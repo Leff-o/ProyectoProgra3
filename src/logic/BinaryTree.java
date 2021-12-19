@@ -181,6 +181,10 @@ public class BinaryTree<T> {
         return node.getRight() == null && node.getLeft() == null;
     }
 
+
+    /*
+
+     */
     public TreeNode<T> findFather(TreeNode<T> node) {
         if (node == root) {
             return null;
@@ -193,6 +197,13 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * levelNode.
+     *
+     * @param node the node
+     * Este método se encarga de devolvernos un entero con el nivel del Nodo
+     * @return node
+     */
     public int levelNode(TreeNode<T> node) {
         return node == root ? 0 : levelNode(findFather(node)) + 1;
     }
@@ -224,6 +235,13 @@ public class BinaryTree<T> {
         return heightNode(root);
     }
 
+    /**
+     * getGradeNode
+     *
+     * @param node the node
+     * Este método devuelve un entero con el grado del nodo
+     * @return int grade
+     */
     public int getGradeNode(TreeNode<T> node) {
         if (node.getRight() != null && node.getLeft() != null)
             return 2;
@@ -235,7 +253,7 @@ public class BinaryTree<T> {
 
     /**
      * Update height.
-     *
+     * Este método actualiza la altura del nodo
      * @param node the node
      */
     private void updateHeight(TreeNode<T> node) {
@@ -269,6 +287,12 @@ public class BinaryTree<T> {
         return node;
     }
 
+    /**
+     * deleteNode.
+     * @param node the node
+     *
+     * @return
+     */
     public T deleteNode(TreeNode<T> node) {
         switch (getGradeNode(node)) {
             case 0:
@@ -333,6 +357,10 @@ public class BinaryTree<T> {
         return node;
     }
 
+    /**
+     * deleteWithSons
+     *
+     */
     private T deleteWithSons(TreeNode<T> node) {
         T out = node.getInfo();
         if (node == root) {
@@ -374,6 +402,13 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * deleteWithSon.
+     * @param node the node
+     * Se encarga de eliminar el nodo con su hijo.
+     * @return out
+     */
+
     private T deleteWithSon(TreeNode<T> node) {
         T out = node.getInfo();
         if (node == root) {
@@ -388,6 +423,13 @@ public class BinaryTree<T> {
         }
         return out;
     }
+
+    /**
+     * deleteLeaf.
+     * @param node the node
+     * Este método se encarga de borrar las hojas del árbol, para ello recibe como parámetro un nodo
+     * @return out
+     */
 
     private T deleteLeaf(TreeNode<T> node) {
         T out = node.getInfo();
@@ -405,6 +447,12 @@ public class BinaryTree<T> {
         return out;
     }
 
+
+    /**
+     * WeightTree.
+     * Este método retorna un entero referente al peso del árbol
+    * @return weight
+     */
     public int weightTree() {
         return weight(root);
     }
