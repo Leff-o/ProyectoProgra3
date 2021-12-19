@@ -1,17 +1,16 @@
 package logic;
 
 public class TreeNode <T>{
-
     private T info;
-
+    private int height;
     private TreeNode<T> left;
-
     private TreeNode<T> right;
 
     public TreeNode(T info) {
         this.info = info;
-        this.left = null;
-        this.right = null;
+        height = 0;
+        left = null;
+        right = null;
     }
 
     public T getInfo() {
@@ -36,5 +35,13 @@ public class TreeNode <T>{
 
     public void setRight(TreeNode<T> right) {
         this.right = right;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
