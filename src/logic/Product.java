@@ -2,16 +2,16 @@ package logic;
 
 public class Product {
     private long id;
-    private String descripition;
+    private String description;
     private double value;
-    private String proveedor;
+    private String supplier;
     private int stock;
 
-    public Product(long id, String descripition, double value, String proveedor, int stock) {
+    public Product(long id, String description, double value, String proveedor, int stock) {
         this.id = id;
-        this.descripition = descripition;
+        this.description = description;
         this.value = value;
-        this.proveedor = proveedor;
+        this.supplier = proveedor;
         this.stock = stock;
     }
 
@@ -23,12 +23,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getDescripition() {
-        return descripition;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripition(String descripition) {
-        this.descripition = descripition;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getValue() {
@@ -39,12 +39,12 @@ public class Product {
         this.value = value;
     }
 
-    public String getProveedor() {
-        return proveedor;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
     public int getStock() {
