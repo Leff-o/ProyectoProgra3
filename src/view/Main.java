@@ -16,11 +16,15 @@ public class Main {
     public static void menu(){
         boolean menu=true;
         String[] options= {
+        		//METODOS PRODUCTOS AL ARBOL
                 "Agregar productos",
                 "Eliminar productos",
                 "Ver produtos",
+                //METODOS PETICIONES A LA COLA
+                "Agregar peticion",
                 "Mostar peticion en cola",
                 "Mostar todas las peticiones en cola",
+                //
                 "Salir"
         };
         while (menu==true) {
@@ -143,16 +147,38 @@ public class Main {
                             JOptionPane.showMessageDialog(null, "Error, verifique que ya haya añadido productos","ERROR!!!",JOptionPane.ERROR_MESSAGE);
                         }
                         break;
+                    case "Agregar peticion":
+                    	boolean addRequest=true;
+                        while(addRequest==true) {
+                            String requestkJO=JOptionPane.showInputDialog("Ingrese el id del producto a pedir");
+                            if(requestkJO!=null) {
+                                try {
+                                    Long request=Long.parseLong(requestkJO);
+                                    addRequest=false;
+                                    JOptionPane.showMessageDialog(null, mng.addToQueue(request));
+                                }catch (NumberFormatException e) {
+                                    JOptionPane.showMessageDialog(null, "Error, verifique que ingreso numeros","ERROR!!!",JOptionPane.ERROR_MESSAGE);
+                                }
+                            }else {
+                                int ans= JOptionPane.showConfirmDialog(null, "¿Estas seguro?","Alerta",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
+                                if (ans==0) {
+                                	addRequest=false;
+                                }
+                            }
+                        }
+                    	break;
                     case "Mostar peticion en cola":
-                        if(mng.seeOne()!="") {
-                            JOptionPane.showMessageDialog(null, mng.seeOne());
+                    	String txt = mng.seeOne();
+                        if(txt!="") {
+                            JOptionPane.showMessageDialog(null, txt);
                         }else {
                             JOptionPane.showMessageDialog(null, "Error, verifique que ya haya añadido productos","ERROR!!!",JOptionPane.ERROR_MESSAGE);
                         }
                         break;
                     case "Mostar todas las peticiones en cola":
-                        if(mng.seeAll()!="") {
-                            JOptionPane.showMessageDialog(null, mng.seeAll());
+                    	String txt1 = mng.seeAll();
+                        if(txt1!="") {
+                            JOptionPane.showMessageDialog(null, txt1);
                         }else {
                             JOptionPane.showMessageDialog(null, "Error, verifique que ya haya añadido productos","ERROR!!!",JOptionPane.ERROR_MESSAGE);
                         }

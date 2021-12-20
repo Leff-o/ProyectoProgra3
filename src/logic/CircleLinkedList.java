@@ -32,13 +32,14 @@ public class CircleLinkedList<T> {
 	 */
     public void addNode(T info) {
 	    Node<T> newNode = new Node<T>(info);
-	    if (head == null) {
+	    if (isEmpty()) {
 	        head = newNode;
-	        tail.setNextNode(head);
+	        tail = head;
 	    } else {
 	        tail.setNextNode(newNode);
 	        tail = newNode;
 	    }
+	    tail.setNextNode(head);
 	    size++;
 	}
     

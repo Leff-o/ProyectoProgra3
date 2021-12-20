@@ -7,14 +7,21 @@ import java.util.ArrayList;
  */
 public class Management {
 	private BinaryTree<Product> inventory= new BinaryTree<Product>(Product.compareHash);
-	private CircleLinkedList<Long> queue;
+	private CircleLinkedList<Long> queue = new CircleLinkedList<>();
 
 	/**
 	 * Metodo que permite añadir a la cola (es la cola de pedidos a consultar)
 	 * @param info
 	 */
-	public void addToQueue(Long info) {
-		queue.addNode(info);
+	public String addToQueue(Long info) {
+		String data = "";
+		if(verifyId(info)) {//retorna verdadero si existe el id
+			data ="El id que desea solicitar en esta peticion no existe";
+		}else {
+			queue.addNode(info);
+			data = "La peticion actual cuenta con "+(queue.getSize()-1)+" peticiones por delante";
+		}
+		return data;
 	}
 
 	/**
@@ -23,12 +30,16 @@ public class Management {
 	 */
 	public String seeAll() {
 		String data = "";
-		while(!queue.isEmpty()) {
-			data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
-			queue.deleteNode(queue.getHead().getInfo());
-			data += "\n";
+		if(queue.isEmpty()) {
+			data = "No hay peticiones que mostrar";
+		}else {
+			while(!queue.isEmpty()) {
+				data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
+				queue.deleteNode(queue.getHead().getInfo());
+				data += "\n";
+			}
+			data += "Se han mostrado todas las solicitudes pendientes de la cola";
 		}
-		data += "Se han mostrado todas las solicitudes pendientes de la cola";
 		return data;
 	}
 
@@ -38,10 +49,14 @@ public class Management {
 	 */
 	public String seeOne() {
 		String data = "";
-		data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
-		queue.deleteNode(queue.getHead().getInfo());
-		data += "\n";
-		data += "Se ha mostrado la solicitud en cabeza de la cola, quedan "+queue.getSize()+" peticiones en cola";
+		if(queue.isEmpty()) {
+			data = "No hay peticiones que mostrar";
+		}else {
+			data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
+			queue.deleteNode(queue.getHead().getInfo());
+			data += "\n";
+			data += "Se ha mostrado la solicitud en cabeza de la cola, quedan "+queue.getSize()+" peticiones en cola";
+		}
 		return data;
 		
 	}
@@ -100,9 +115,13 @@ public class Management {
 	 */
 	public String seeProducts() {
 		String data = "";
-		ArrayList<Product> insort = inventory.getList();
-		for(int i=0; i<insort.size(); i++) {
-			data += (i+1)+". "+insort.get(i).toString()+"\n";
+		if(inventory.isEmpty()) {
+			data = "No hay productos que msotrar";
+		}else {
+			ArrayList<Product> insort = inventory.getList();
+			for(int i=0; i<insort.size(); i++) {
+				data += (i+1)+". "+insort.get(i).toString()+"\n";
+			}
 		}
 		return data;
 	}
