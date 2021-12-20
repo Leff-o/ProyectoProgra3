@@ -1,7 +1,7 @@
 package logic;
 
 /**
- * Clase que permite crear el nodo que se utilizará en la clase {@link BinaryTree}
+ * Clase que permite crear el nodo que se utilizara en la clase {@link BinaryTree}
  * @param <T>
  */
 public class TreeNode <T>{

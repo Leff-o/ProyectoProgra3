@@ -115,16 +115,14 @@ public class Product {
 		si product1.hashCode() esta a la derecha de product2.hashCode() retorna un numero positivo
      */
 
-	@Override
-	public String toString() {
-		return  "Product:\n"+
-				"  *Id: "+id+"\n"+
-				"  *Descripcion: "+description+"\n"+
-				"  *Precio:"+value+"\n"+
-				"  *Proovedor: "+supplier+"\n"+
-				"  *stock: "+stock+"\n";
-	}
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", value=" + value +
+                ", supplier='" + supplier + '\'' +
+                ", stock=" + stock +
+                '}';
+    }
 }

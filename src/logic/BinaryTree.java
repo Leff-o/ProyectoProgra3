@@ -315,7 +315,7 @@ public class BinaryTree<T> {
     /**
      * presort
      * @param root
-     * método que se encarga de realizar el ordenamiento en pre ordene
+     * metodo que se encarga de realizar el ordenamiento en pre ordene
      */
     private void presort(TreeNode<T> root) {
         if (root != null) {
@@ -327,7 +327,7 @@ public class BinaryTree<T> {
 
     /**
      * listInsort
-     * Método que retorna la lista de los nodos en orden inorden
+     * Metodo que retorna la lista de los nodos en orden inorden
      * @return out
      */
     public ArrayList<T> listInsort() {
@@ -340,7 +340,7 @@ public class BinaryTree<T> {
     /**
      * insort
      * @param root
-     * Método encargado
+     * Mï¿½todo encargado
      */
     private void insort(TreeNode<T> root) {
         if (root != null) {
@@ -352,7 +352,7 @@ public class BinaryTree<T> {
 
     /**
      *listPosort
-     * Este método se encarga de mostrar un arrayList con los nodos puestos en Posort
+     * Este metodo se encarga de mostrar un arrayList con los nodos puestos en Posort
      *
      * @return out
      */
@@ -378,7 +378,7 @@ public class BinaryTree<T> {
 
     /**
      * listAmplitude
-     * Este método se encarga de mostrar un arrayList con la amplitud de la lista
+     * Este metodo se encarga de mostrar un arrayList con la amplitud de la lista
      * @return out
      */
     public ArrayList<T> listAmplitude() {

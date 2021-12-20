@@ -2,14 +2,16 @@ package logic;
 
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinaryTreeTest {
+
     private BinaryTree<Product> bts;
+    private Product product;
+    private
 
     void setup2(){
+        bts = new BinaryTree<Product>(Product.compareHash);
         Product product = new Product(1234l, "Biotina Gomas", 50_000, "EPA colombia", 115);
         Product product1 = new Product(2345l, "Biotina Moradas", 50_000, "EPA colombia", 110);
         Product product2 = new Product(3456l, "Iluminador", 15_000, "EPA colombia", 2);
@@ -33,15 +35,21 @@ class BinaryTreeTest {
     @Test
     void isEmpty() {
         setup2();
-        assertTrue(true, bts.findNode(1234l));
-    }
-
-    @Test
-    void getRoot() {
+        assertNotNull(bts.findNode(new Product(1234l, "", 0.0, "", 0)));
+        assertNull(bts.findNode(new Product(23l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(2345l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(3456l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(4567l, "", 0.0, "", 0)));
     }
 
     @Test
     void findNode() {
+        setup2();
+        assertNotNull(bts.findNode(new Product(1234l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(2345l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(4567l, "", 0.0, "", 0)));
+        assertEquals(8901l, bts.findNode(new Product(8901l, "", 0.0, "", 0)).getInfo().getId());
+        assertNull(bts.findNode(new Product(23l, "", 0.0, "", 0)));
     }
 
     @Test
@@ -63,16 +71,13 @@ class BinaryTreeTest {
     @Test
     void isLeaf() {
     }
+
     @Test
     void weightTree() {
     }
 
     @Test
     void getBalance() {
-    }
-
-    @Test
-    void findFather() {
     }
 
     @Test
