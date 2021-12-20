@@ -7,6 +7,7 @@ package logic;
 public class CircleLinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
+    private int size;
 
     /**
      * Constructor que permite crear e inicializar algunos atributos
@@ -14,6 +15,7 @@ public class CircleLinkedList<T> {
     public CircleLinkedList() {
         this.head = null;
         this.tail = null;
+        this.size = 0;
     }
 
     /**
@@ -37,6 +39,7 @@ public class CircleLinkedList<T> {
 	        tail.setNextNode(newNode);
 	        tail = newNode;
 	    }
+	    size++;
 	}
     
     /**
@@ -67,6 +70,7 @@ public class CircleLinkedList<T> {
 	        }
 	        currentNode = nextNode;
 	    } while (currentNode != head);
+	    size--;
 	}
     
     /**
@@ -100,4 +104,14 @@ public class CircleLinkedList<T> {
     public void setTail(Node<T> tail) {
         this.tail = tail;
     }
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+    
+    
 }
