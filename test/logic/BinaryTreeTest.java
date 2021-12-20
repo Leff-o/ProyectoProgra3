@@ -158,11 +158,6 @@ class BinaryTreeTest {
     }
 
     @Test
-    void levelNode() {
-        //assertEquals();
-    }
-
-    @Test
     void heigthTree() {
         setup2();
         assertEquals(3, bts.heightTree());

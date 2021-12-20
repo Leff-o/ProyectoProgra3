@@ -28,7 +28,7 @@ public class Management {
 			queue.deleteNode(queue.getHead().getInfo());
 			data += "\n";
 		}
-		data += "Se han msotrado todas las solicitudes pendientes de la cola";
+		data += "Se han mostrado todas las solicitudes pendientes de la cola";
 		return data;
 	}
 
