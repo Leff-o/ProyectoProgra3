@@ -19,6 +19,8 @@ public class Main {
                 "Agregar productos",
                 "Eliminar productos",
                 "Ver produtos",
+                "Mostar peticion en cola",
+                "Mostar todas las peticiones en cola",
                 "Salir"
         };
         while (menu==true) {
@@ -135,7 +137,25 @@ public class Main {
                         }
                         break;
                     case "Ver produtos":
-                        JOptionPane.showMessageDialog(null, mng.seeProducts());
+                        if(mng.seeProducts()!="") {
+                            JOptionPane.showMessageDialog(null, mng.seeProducts());
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Error, verifique que ya haya añadido productos","ERROR!!!",JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case "Mostar peticion en cola":
+                        if(mng.seeOne()!="") {
+                            JOptionPane.showMessageDialog(null, mng.seeOne());
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Error, verifique que ya haya añadido productos","ERROR!!!",JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case "Mostar todas las peticiones en cola":
+                        if(mng.seeAll()!="") {
+                            JOptionPane.showMessageDialog(null, mng.seeAll());
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Error, verifique que ya haya añadido productos","ERROR!!!",JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                     case "Salir":
                         JOptionPane.showMessageDialog(null, "Hasta pronto", "Adios", JOptionPane.INFORMATION_MESSAGE);

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Clase que hace el manejo de los arboles binarios y la lista circular
  */
 public class Management {
-	private BinaryTree<Product> inventory;
+	private BinaryTree<Product> inventory= new BinaryTree<Product>(Product.compareHash);
 	private CircleLinkedList<Long> queue;
 
 	/**
@@ -41,7 +41,7 @@ public class Management {
 		data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
 		queue.deleteNode(queue.getHead().getInfo());
 		data += "\n";
-		data += "Se ha msotrado la solicitud en cabeza de al cola, quedan "+queue.getSize()+" peticiones en cola";
+		data += "Se ha mostrado la solicitud en cabeza de la cola, quedan "+queue.getSize()+" peticiones en cola";
 		return data;
 		
 	}
@@ -69,7 +69,7 @@ public class Management {
 	 * @return data
 	 */
 	public String removeProduct(Long id) {
-		String data = "";
+		String data = "Se ha eliminado correctamente";
 		inventory.deleteNode(new Product(id, "", 0.0, "", 0));
 		return data;
 	}
@@ -94,8 +94,6 @@ public class Management {
 
 	}
 
-
-
 	/**
 	 * Este metodo permite ver todos los productos que estan dentro del inventario o cola
 	 * @return
@@ -104,7 +102,7 @@ public class Management {
 		String data = "";
 		ArrayList<Product> insort = inventory.getList();
 		for(int i=0; i<insort.size(); i++) {
-			data += insort.get(i).toString();
+			data += (i+1)+". "+insort.get(i).toString()+"\n";
 		}
 		return data;
 	}
