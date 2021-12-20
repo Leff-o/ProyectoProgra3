@@ -2,22 +2,24 @@ package logic;
 
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinaryTreeTest {
+
     private BinaryTree<Product> bts;
+    private Product product;
+    private
 
     void setup2(){
-        Product product = new Product(1234l, "Biotina Gomas", 50_000, "EPA colombia", 115);
-        Product product1 = new Product(2345l, "Biotina Moradas", 50_000, "EPA colombia", 110);
-        Product product2 = new Product(3456l, "Iluminador", 15_000, "EPA colombia", 2);
-        Product product3 = new Product(4567l, "Acondicionador verde", 50_000, "EPA colombia", 34);
-        Product product4 = new Product(5678l, "Shampoo Verde", 50_000, "EPA colombia", 3);
-        Product product5 = new Product(6789l, "Termoprotector", 50_000, "EPA colombia", 5);
-        Product product6 = new Product(7890l, "Shampoo Morado", 50_000, "EPA colombia", 12);
-        Product product7 = new Product(8901l, "Iluminador Corporal", 25_000, "VIDAN", 4);
+        bts = new BinaryTree<Product>(Product.compareHash);
+        Product product = new Product(12l, "Biotina Gomas", 50_000, "EPA colombia", 115);
+        Product product1 = new Product(23l, "Biotina Moradas", 50_000, "EPA colombia", 110);
+        Product product2 = new Product(34l, "Iluminador", 15_000, "EPA colombia", 2);
+        Product product3 = new Product(45l, "Acondicionador verde", 50_000, "EPA colombia", 34);
+        Product product4 = new Product(56l, "Shampoo Verde", 50_000, "EPA colombia", 3);
+        Product product5 = new Product(67l, "Termoprotector", 50_000, "EPA colombia", 5);
+        Product product6 = new Product(78l, "Shampoo Morado", 50_000, "EPA colombia", 12);
+        Product product7 = new Product(89l, "Iluminador Corporal", 25_000, "VIDAN", 4);
         bts = new BinaryTree<Product>(Product.compareHash);
         bts.addNode(product);
         bts.addNode(product1);
@@ -58,20 +60,20 @@ class BinaryTreeTest {
     @Test
     void isEmpty() {
         setup2();
-        assertNotNull(bts.findNode(new Product(1234l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(12l, "", 0.0, "", 0)));
         assertNull(bts.findNode(new Product(23l, "", 0.0, "", 0)));
-        assertNotNull(bts.findNode(new Product(2345l, "", 0.0, "", 0)));
-        assertNotNull(bts.findNode(new Product(3456l, "", 0.0, "", 0)));
-        assertNotNull(bts.findNode(new Product(4567l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(34l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(45l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(56l, "", 0.0, "", 0)));
     }
 
     @Test
     void findNode() {
         setup2();
-        assertNotNull(bts.findNode(new Product(1234l, "", 0.0, "", 0)));
-        assertNotNull(bts.findNode(new Product(2345l, "", 0.0, "", 0)));
-        assertNotNull(bts.findNode(new Product(4567l, "", 0.0, "", 0)));
-        assertEquals(8901l, bts.findNode(new Product(8901l, "", 0.0, "", 0)).getInfo().getId());
+        assertNotNull(bts.findNode(new Product(12l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(23l, "", 0.0, "", 0)));
+        assertNotNull(bts.findNode(new Product(45l, "", 0.0, "", 0)));
+        assertEquals(8901l, bts.findNode(new Product(89l, "", 0.0, "", 0)).getInfo().getId());
         assertNull(bts.findNode(new Product(23l, "", 0.0, "", 0)));
     }
 
@@ -141,15 +143,45 @@ class BinaryTreeTest {
      assertTrue(bts.isLeaf(bts.findNode(new Product(66L,"",0.0,"",0))));
      assertTrue(bts.isLeaf(bts.findNode(new Product(99L,"",0.0,"",0))));
     }
+
     @Test
     void weightTree() {
+        setup2();
+        assertEquals(8, bts.weightTree());
+        bts.deleteNode(new Product(89l, "", 0.0, "", 0));
+        assertEquals(7, bts.weightTree());
+        bts.deleteNode(new Product(68l, "", 0.0, "", 0));
+        assertEquals(7, bts.weightTree());
+        bts.addNode(new Product(68l, "", 0.0, "", 0));
+        bts.addNode(new Product(69l, "", 0.0, "", 0));
+        assertEquals(9, bts.weightTree());
+    }
+
+    @Test
+    void levelNode() {
+        //assertEquals();
     }
 
     @Test
     void heigthTree() {
+        setup2();
+        assertEquals(3, bts.heightTree());
+        bts.deleteNode(new Product(89l, "", 0.0, "", 0));
+        assertEquals(1, bts.findNode(new Product(67l, "", 0.0, "", 0)).getHeight());
+        assertEquals(2, bts.heightTree());
     }
 
     @Test
     void deleteNode() {
+        setup2();
+        bts.deleteNode(new Product(89l, "", 0.0, "", 0));
+        assertEquals(7, bts.weightTree());
+        bts.deleteNode(new Product(67l, "", 0.0, "", 0));
+        assertEquals(6, bts.weightTree());
+        assertEquals(2, bts.heightTree());
+        bts.addNode(new Product(98l, "", 0.0, "", 0));
+        bts.addNode(new Product(90l, "", 0.0, "", 0));
+        assertEquals(8, bts.weightTree());
+        assertEquals(3, bts.heightTree());
     }
 }

@@ -180,7 +180,6 @@ public class BinaryTree<T> {
 	 * @param info the info
 	 */
     public void deleteNode(T info) {
-    	
         root = delete(root, info);
     }
 
@@ -192,7 +191,7 @@ public class BinaryTree<T> {
 	 * @return the tree node
 	 */
     private TreeNode<T> delete(TreeNode<T> node, T info) {
-        if ((node == null)) {												  // case 0 no hay raiz o no hya sub arbol
+        if ((node == null)) {												  // case 0 no hay raiz o no hay sub arbol
             return node;
         } else if (comparator.compare((T) node.getInfo(), (T) info) > 0) {// desplazamiento por izquierda + recursividad
             node.setLeft(delete(node.getLeft(), info));
@@ -205,7 +204,6 @@ public class BinaryTree<T> {
             node.setInfo(mostLeftChild.getInfo());
             node.setRight(delete(node.getRight(), node.getInfo()));
         }
-        
         if (node != null) {
             node = rebalance(node);
         }
