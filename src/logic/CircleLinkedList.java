@@ -5,31 +5,76 @@ package logic;
  * @param <T>
  */
 public class CircleLinkedList<T> {
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
 
     /**
      * Constructor que permite crear e inicializar algunos atributos
      * @param info
      */
-    public CircleLinkedList(T info) {
-        this.head = head;
-        this.tail = tail;
+    public CircleLinkedList() {
+        this.head = null;
+        this.tail = null;
     }
 
     /**
      * Este metodo permite saber si la lista esta vacia o no
      * @return head == null
      */
-    private boolean isEmpty(){
+    public boolean isEmpty(){
         return head == null;
     }
-
+    
+    /**
+	 * Este metodo permite agregar nodos a la lista circular
+	 * @param info
+	 */
+    public void addNode(T info) {
+	    Node<T> newNode = new Node<T>(info);
+	    if (head == null) {
+	        head = newNode;
+	        tail.setNextNode(head);
+	    } else {
+	        tail.setNextNode(newNode);
+	        tail = newNode;
+	    }
+	}
+    
+    /**
+	 * Este metodo permite borrar un nodo, de acuerdo a la informacion obtenida
+	 * @param info
+	 */
+	public void deleteNode(T info) {
+	    Node<T> currentNode = head;
+	    if (head == null) { // the list is empty
+	        return;
+	    }
+	    do {
+	        Node<T> nextNode = currentNode.getNextNode();
+	        if (nextNode.getInfo() == info) {
+	            if (tail == head) { // the list has only one single element
+	                head = null;
+	                tail = null;
+	            } else {
+	                currentNode.setNextNode(nextNode.getNextNode());
+	                if (head == nextNode) { //we're deleting the head
+	                    head = head.getNextNode();
+	                }
+	                if (tail == nextNode) { //we're deleting the tail
+	                    tail = currentNode;
+	                }
+	            }
+	            break;
+	        }
+	        currentNode = nextNode;
+	    } while (currentNode != head);
+	}
+    
     /**
      * Metodo que obtiene el valor de la cabeza de la lista
      * @return head
      */
-    public Node getHead() {
+    public Node<T> getHead() {
         return head;
     }
 
@@ -37,7 +82,7 @@ public class CircleLinkedList<T> {
      * Metodo que trae el valor de la cabeza de la lista para modificarlo
      * @param head
      */
-    public void setHead(Node head) {
+    public void setHead(Node<T> head) {
         this.head = head;
     }
 
@@ -45,7 +90,7 @@ public class CircleLinkedList<T> {
      * Metodo que obtiene el valor del ultimo en la lista
      * @return tail
      */
-    public Node getTail() {
+    public Node<T> getTail() {
         return tail;
     }
 
@@ -53,7 +98,7 @@ public class CircleLinkedList<T> {
      * Metodo que trae el valor del ultimo en la lista para modificarse
      * @param tail
      */
-    public void setTail(Node tail) {
+    public void setTail(Node<T> tail) {
         this.tail = tail;
     }
 }

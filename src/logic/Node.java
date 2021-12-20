@@ -6,12 +6,12 @@ package logic;
  */
 public class Node<T> {
     private T info;
-    private Node nextNode;
+    private Node<T> nextNode;
 
     /**
      * Constructor que define el nodo
      */
-    public Node() {
+    public Node(T info) {
         this.info = info;
         this.nextNode = null;
     }
@@ -36,7 +36,7 @@ public class Node<T> {
      * Metodo que obtiene el nodo siguiente
      * @return nextNode
      */
-    public Node getNextNode() {
+    public Node<T> getNextNode() {
         return nextNode;
     }
 
@@ -44,7 +44,7 @@ public class Node<T> {
      * Metodo que trae el nodo siguiente para modificarse
      * @param nextNode
      */
-    public void setNextNode(Node nextNode) {
+    public void setNextNode(Node<T> nextNode) {
         this.nextNode = nextNode;
     }
 }

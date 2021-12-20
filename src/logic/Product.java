@@ -1,10 +1,12 @@
 package logic;
 
+import java.util.Comparator;
+
 /**
  * Clase que define los atributos del producto a usar
  */
 public class Product {
-    private long id;
+    private Long id;
     private String description;
     private double value;
     private String supplier;
@@ -18,7 +20,7 @@ public class Product {
      * @param proveedor
      * @param stock
      */
-    public Product(long id, String description, double value, String proveedor, int stock) {
+    public Product(Long id, String description, double value, String proveedor, int stock) {
         this.id = id;
         this.description = description;
         this.value = value;
@@ -30,7 +32,7 @@ public class Product {
      * Metodo get del id
      * @return id
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -38,7 +40,7 @@ public class Product {
      * Metodo set Id
      * @param id
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -105,4 +107,11 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
+    
+    public static Comparator<Product> compareHash = (product1, product2) ->  product1.getId().compareTo(product2.getId());
+    /*
+		si product1.hashCode() esta a la izquierda de product2.hashCode() retorna un numero negativo 
+		si product1.hashCode() es igual a product2.hashCode() retorna 0
+		si product1.hashCode() esta a la derecha de product2.hashCode() retorna un numero positivo
+     */
 }
