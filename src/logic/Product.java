@@ -20,11 +20,11 @@ public class Product {
      * @param proveedor
      * @param stock
      */
-    public Product(Long id, String description, double value, String proveedor, int stock) {
+    public Product(Long id, String description, double value, String supplier, int stock) {
         this.id = id;
         this.description = description;
         this.value = value;
-        this.supplier = proveedor;
+        this.supplier = supplier;
         this.stock = stock;
     }
 
@@ -114,4 +114,17 @@ public class Product {
 		si product1.hashCode() es igual a product2.hashCode() retorna 0
 		si product1.hashCode() esta a la derecha de product2.hashCode() retorna un numero positivo
      */
+
+	@Override
+	public String toString() {
+		return  "Product:\n"+
+				"  *Id: "+id+"\n"+
+				"  *Descripcion: "+description+"\n"+
+				"  *Precio:"+value+"\n"+
+				"  *Proovedor: "+supplier+"\n"+
+				"  *stock: "+stock+"\n";
+	}
+    
+    
+    
 }
