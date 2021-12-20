@@ -46,6 +46,7 @@ public class Management {
 		
 	}
 
+
 	/**
 	 * Metodo que permite añadir un nuevo producto a la cola de inventarios
 	 * @param id
@@ -72,6 +73,28 @@ public class Management {
 		inventory.deleteNode(new Product(id, "", 0.0, "", 0));
 		return data;
 	}
+
+	/**
+	 *
+	 * @param id
+	 * metodo que permite verificar el id de un producto en el inventario
+	 * @return boolean
+	 */
+	public boolean verifyId(Long id) {
+		try {
+			Product aux = inventory.findNode(new Product(id, "", 0.0, "", 0)).getInfo();
+			if(aux==null) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (NullPointerException e) {
+			return true;
+		}
+
+	}
+
+
 
 	/**
 	 * Este metodo permite ver todos los productos que estan dentro del inventario o cola
