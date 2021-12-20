@@ -1,23 +1,13 @@
 package logic;
 
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
-/*
-+ Peso del árbol
-+Número de nodos
-* Altura del nodo
-* Número de enlaces en el camino más largo.
-* Entre ese nodo y una hoja descendente.
-+ Nivel de un nodo
-+ Distancia del nodo hasta la raiz.
-* Altura o profundidad del arbol
-* Nivel de la hoja del camino más largo
-+ Grado de un Nodo
-+ Numero de hijos de un nodo
- */
 
+/**
+ * BinaryTree
+ * Esta es la clase que define el árbol binario junto a sus respectivos métodos de búsqueda y balanceo
+ */
 public class BinaryTree<T> {
     private TreeNode<T> root;
     private Comparator<T> comparator;
@@ -38,6 +28,12 @@ public class BinaryTree<T> {
     public boolean isEmpty() {
         return root == null;
     }
+
+    /**
+     *  addNode
+     * @param info
+     * Esta clase se encarga de agregar nodos al árbol binario
+     */
 
     public void addNode(T info) {
         TreeNode<T> node = new TreeNode<>(info);
@@ -113,6 +109,12 @@ public class BinaryTree<T> {
         return null;
     }
 
+    /**
+     * listPresort
+     * Este método retorna un arraylist con la lista en preorden
+     * @return out
+     */
+
     public ArrayList<T> listPresort() {
         out = new ArrayList<>();
         presort(root);
@@ -120,6 +122,11 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * presort
+     * @param root
+     * método que se encarga de realizar el ordenamiento en pre ordene
+     */
     private void presort(TreeNode<T> root) {
         if (root != null) {
             out.add(root.getInfo());
@@ -128,6 +135,11 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * listInsort
+     * Método que retorna la lista de los nodos en orden inorden
+     * @return out
+     */
     public ArrayList<T> listInsort() {
         out = new ArrayList<>();
         insort(root);
@@ -135,6 +147,11 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * insort
+     * @param root
+     * Método encargado
+     */
     private void insort(TreeNode<T> root) {
         if (root != null) {
             insort(root.getLeft());
@@ -143,8 +160,10 @@ public class BinaryTree<T> {
         }
     }
 
-    //+ listPosort()
-
+    /**
+     *
+     * @return
+     */
     public ArrayList<T> listPosort() {
         out = new ArrayList<>();
         posort(root);
@@ -182,8 +201,12 @@ public class BinaryTree<T> {
     }
 
 
-    /*
-
+    /**
+     * findFather
+     * @param node
+     *
+     * El método se encarga de encontrar el nodo padre
+     * @return
      */
     public TreeNode<T> findFather(TreeNode<T> node) {
         if (node == root) {
@@ -218,6 +241,14 @@ public class BinaryTree<T> {
         return node == null ? -1 : node.getHeight();
     }
 
+    /**
+     * heigth
+     *
+     * @param node
+     * @param i
+     * Esté método se encarga de encontrar la altura de un determinado nodo
+     *
+     */
     private void heigth(TreeNode<T> node, int i) {
         if (node != null) {
             heigth(node.getLeft(), i + 1);
@@ -359,7 +390,9 @@ public class BinaryTree<T> {
 
     /**
      * deleteWithSons
-     *
+     * @param node
+     * Este metodo se encarga de eliminar un nodo con sus respectivos hijos
+     * @return out
      */
     private T deleteWithSons(TreeNode<T> node) {
         T out = node.getInfo();
@@ -376,31 +409,6 @@ public class BinaryTree<T> {
         return out;
     }
 
-    private T deleteWithSons2(TreeNode<T> node) {
-        T out = node.getInfo();
-        TreeNode<T> sustitute = node.getRight();
-        TreeNode<T> fatherSustitute = null;
-        while (sustitute.getLeft() != null) {
-            fatherSustitute = sustitute;
-            sustitute = sustitute.getLeft();
-        }
-        if (fatherSustitute != null) {
-            fatherSustitute.setLeft(node.getRight());
-            sustitute.setRight(node.getRight());
-        }
-        sustitute.setLeft(node.getLeft());
-
-        //+Buscar padre del nodo o Eliminar
-        TreeNode<T> father = findFather(node);
-        if (father == null) {
-            root = sustitute;
-        } else if (father.getLeft() == node) {
-            father.setLeft(sustitute);
-        } else {
-            father.setRight(sustitute);
-        }
-        return out;
-    }
 
     /**
      * deleteWithSon.
