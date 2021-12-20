@@ -161,8 +161,10 @@ public class BinaryTree<T> {
     }
 
     /**
+     *listPosort
+     * Este método se encarga de mostrar un arrayList con los nodos puestos en Posort
      *
-     * @return
+     * @return out
      */
     public ArrayList<T> listPosort() {
         out = new ArrayList<>();
@@ -171,6 +173,11 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     * posort
+     * @param root
+     * Esta funcion se encarga de ordenar el arbol en posort
+     */
     private void posort(TreeNode<T> root) {
         if (root != null) {
             posort(root.getLeft());
@@ -179,6 +186,11 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * listAmplitude
+     * Este método se encarga de mostrar un arrayList con la amplitud de la lista
+     * @return out
+     */
     public ArrayList<T> listAmplitude() {
         out = new ArrayList<>();
         ArrayDeque<TreeNode> tail = new ArrayDeque<>();
@@ -196,6 +208,12 @@ public class BinaryTree<T> {
         return out;
     }
 
+    /**
+     *
+     * @param node
+     * Este metodo se encarga rectificar si un nodo es una hoja.
+     * @return node
+     */
     public boolean isLeaf(TreeNode<T> node) {
         return node.getRight() == null && node.getLeft() == null;
     }
@@ -408,7 +426,6 @@ public class BinaryTree<T> {
         }
         return out;
     }
-
 
     /**
      * deleteWithSon.
