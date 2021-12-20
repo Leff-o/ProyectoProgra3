@@ -13,27 +13,29 @@ public class Management {
 	
 	public String seeAll() {
 		String data = "";
-		
+		while(!queue.isEmpty()) {
+			data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
+			queue.deleteNode(queue.getHead().getInfo());
+			data += "\n";
+		}
+		data += "Se han msotrado todas las solicitudes pendientes de la cola";
 		return data;
 	}
 	
 	public String seeOne() {
 		String data = "";
-		
+		data += inventory.findNode(new Product(queue.getHead().getInfo(), "", 0, "", 0)).getInfo().toString();
+		queue.deleteNode(queue.getHead().getInfo());
+		data += "\n";
+		data += "Se ha msotrado la solicitud en cabeza de al cola, quedan "+queue.getSize()+" peticiones en cola";
 		return data;
 		
 	}
 	
 	public String addProduct(Long id, String description, double value, String supplier, int stock) {
 		String data = "";
-		Product aux = inventory.findNode(new Product(id, "", 0.0, "", 0)).getInfo();
-		if(aux==null) {
-			inventory.addNode(new Product(id, description, value, supplier, stock));
-			data = "El nuevo producto ha sido agregado exitosamente al inventario";
-		}else {
-			data = "ERROR. El ID a regristrar pertenece al producto\n";
-			data += aux.toString();
-		}
+		inventory.addNode(new Product(id, description, value, supplier, stock));
+		data = "El nuevo producto ha sido agregado exitosamente al inventario";
 		return data;
 	}
 	
