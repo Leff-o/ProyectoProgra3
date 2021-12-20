@@ -17,7 +17,6 @@ public class Product {
      * @param id
      * @param description
      * @param value
-     * @param proveedor
      * @param stock
      */
     public Product(Long id, String description, double value, String supplier, int stock) {

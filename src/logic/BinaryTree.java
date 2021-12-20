@@ -340,7 +340,7 @@ public class BinaryTree<T> {
     /**
      * insort
      * @param root
-     * M�todo encargado
+     * Metodo encargado
      */
     private void insort(TreeNode<T> root) {
         if (root != null) {

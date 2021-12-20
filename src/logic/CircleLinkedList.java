@@ -10,7 +10,6 @@ public class CircleLinkedList<T> {
 
     /**
      * Constructor que permite crear e inicializar algunos atributos
-     * @param info
      */
     public CircleLinkedList() {
         this.head = null;
